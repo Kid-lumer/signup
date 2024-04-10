@@ -10,6 +10,11 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/SoloProject"
 Mongo = PyMongo(app)
 db = Mongo.db
 
+# landing page
+@app.route('/')
+def landing():
+        return render_template("index.html")
+
 
 # Signup page
 
