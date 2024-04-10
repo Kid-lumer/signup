@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f1f1;
+    background-image: url(https://i.pinimg.com/564x/b9/2f/98/b92f988fc97b572d769f63ee2a0dc45e.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    background-color:transparent;
+    max-width: 450px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: hsl(0, 2%, 73%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 800px;
+    border: 3px black;
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+form input {
+    display: block;
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    display: block;
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: hwb(180 10% 90%);
+    color: hwb(0 97% 2%);
+    cursor: pointer;
+}
+.select-input select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+.logo{
+    height: 60px;
+    width: 60px;
+    float: left;
+    border-radius: 20px;
+    
+  }
+
+  .slide{
+    height: 300px;
+    margin-top: 80px;
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    
+  }
+  
+  nav li {
+    float: left;
+  }
+  
+  nav a {
+    display: block;
+    color: #08b13d;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
