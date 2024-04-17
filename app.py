@@ -5,7 +5,7 @@ from bson.objectid import *
 
 
 
-app = Flask(__name__)
+app = Flask(__name__ ,static_url_path=('/static'))
 app.config["MONGO_URI"] = "mongodb://localhost:27017/SoloProject"
 Mongo = PyMongo(app)
 db = Mongo.db
@@ -26,15 +26,11 @@ def signup():
      email = request.form["email"]
      Cell_No = request.form["CellNo."]
      password = request.form["password"]
-     Confirm_Pasword = request.form["confirmpassword"]
+     role = request.form["role"]
      
-    #  confirming password§
+     
    
-     if password != Confirm_Pasword:
-      return "passwords do not match"
-
-
-     signupdetails = {"full_name":full_name, "email":email, "Cell_No":Cell_No, "password":password}
+     signupdetails = {"full_name":full_name, "email":email, "Cell_No":Cell_No, "password":password, "role":role}
 
      db.signup.insert_one(signupdetails)
      
@@ -47,31 +43,95 @@ def signup():
                 
   return render_template('register.html')
 
+#Artist Register
 
-#Login Page
+@app.route('/ArtistRegister', methods=["POST","GET"])
+def register():
+  if request.method =="POST":
+     
+     full_name = request.form["name"]
+     email = request.form["email"]
+     Cell_No = request.form["CellNo."]
+     Password = request.form["Password"]
+     Confirm_Pasword = request.form["confirmpassword"]
+    
+    
+    #  confirming password§
+   
+     if Password != Confirm_Pasword:
+      return "passwords do not match"
+
+
+     signupdetails = {"full_name":full_name, "email":email, "Cell_No":Cell_No, "Password":Password}
+
+     db.signup.insert_one(signupdetails)
+     
+     if ('form submission success'):
+                     return redirect (url_for('login'))
+     else:
+
+                if ('form submission failed'):
+                   return 'form unsuccessful'
+                
+  return render_template('register.html')
+
+# Login Page
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == 'POST':
-        name = request.form['username']
-        password = request.form['password']
-        
-        logindetails = {'name': name, 'password':password}
+        email = request.form['email']
+        password = request.form['signin-password']
+        role = request.form['role']
         
 
     try:
-     
-        user = db.signup.find_one(logindetails)
 
-        if user is None:
-         return redirect(url_for('signup'))
-        else:
-         return redirect(url_for('index'))
+        if  db.signup.find_one({'email': email, 'password':password, 'role': role}):
+         "success"
+         return render_template("catalog.html")
+    
+        if db.signup.find_one({'email':email, 'password':password, 'role':role}):
+        
+          return redirect(url_for('add_item'))
+
     except Exception as e:
      print("An error occurred:", e)
 
 
-    return render_template('login.html')
+
+ #Add Item
+@app.route('/AddItem', methods=["POST", "GET"])
+def add_item():
+    if request.method == 'POST':
+        Art_Name = request.form['Art_Name']
+        Amount = request.form['price']
+        Description = request.form['Description']
+        
+        item = {'Art_Name': Art_Name, 'Amount': Amount, 'Description': Description}
+
+        db.Items.insert_one(item)
+        if ('form submission success'):
+                     item = []
+                     return redirect (url_for('getitem'))
+                    
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("Addfinance.html")
+
+# Display Finance
+@app.route("/catalog", methods=["POST", "GET"] )
+def getCatalog():
+     if request.method == 'GET':
+          item = []
+
+          for i in db.Items.find():
+               item.append(i)
+
+     return render_template("catalog.html" , x=item)
 
 
 if __name__ == "__main__":
