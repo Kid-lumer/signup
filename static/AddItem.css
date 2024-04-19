@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #f1f1f1;
-    background-image: url(https://i.pinimg.com/564x/b9/2f/98/b92f988fc97b572d769f63ee2a0dc45e.jpg);
+    background-image: url(https://i.pinimg.com/564x/78/40/2b/78402b85f1a204d2e9faa9584571904d.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,11 +20,12 @@ body {
     max-width: 700px; /* or any other fixed width */
     margin: 0 auto; /* center the container horizontally */
     display: flex;
-    background-color: #868585;
+    background-color: hsl(0, 2%, 19%);
     height: 600px;
-    margin-top: 20px;
+    margin-top: 120px;
     opacity: 0.9;
     border-radius: 15px;
+    color: aliceblue;
 
 }
 
@@ -74,3 +75,31 @@ button[type="submit"] {
  
     
 }
+.navbar{
+    background-color: #090909;
+    width: 1600px;
+    position: relative;
+    position: fixed;
+    margin-left: -20px;
+    
+
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    
+  }
+  
+  nav li {
+    float: left;
+  }
+  
+  nav a {
+    display: block;
+    color: #08b13d;
+    text-decoration: none;
+    padding: 10px 20px;
+  }

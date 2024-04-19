@@ -35,7 +35,7 @@ def signup():
      db.signup.insert_one(signupdetails)
      
      if ('form submission success'):
-                     return redirect (url_for('login'))
+                     return render_template('register.html')
      else:
 
                 if ('form submission failed'):
@@ -54,6 +54,7 @@ def register():
      Cell_No = request.form["CellNo."]
      Password = request.form["Password"]
      Confirm_Pasword = request.form["confirmpassword"]
+     category = request.form["category"]
     
     
     #  confirming password§
@@ -62,7 +63,7 @@ def register():
       return "passwords do not match"
 
 
-     signupdetails = {"full_name":full_name, "email":email, "Cell_No":Cell_No, "Password":Password}
+     signupdetails = {"full_name":full_name, "email":email, "Cell_No":Cell_No, "Password":Password, "Confirm_Pasword":Confirm_Pasword, "category":category}
 
      db.signup.insert_one(signupdetails)
      
@@ -73,7 +74,7 @@ def register():
                 if ('form submission failed'):
                    return 'form unsuccessful'
                 
-  return render_template('register.html')
+  return render_template('ArtistRegister.html')
 
 # Login Page
 
@@ -87,13 +88,14 @@ def login():
 
     try:
 
-        if  db.signup.find_one({'email': email, 'password':password, 'role': role}):
-         "success"
+        if role == "buyer":
+         db.signup.find_one({'email': email, 'password':password, 'role': role})
          return render_template("catalog.html")
     
-        if db.signup.find_one({'email':email, 'password':password, 'role':role}):
-        
-          return redirect(url_for('add_item'))
+        if role =="seller":
+         db.signup.find_one({'email':email, 'password':password, 'role':role})
+     
+         return render_template("profile.html")
 
     except Exception as e:
      print("An error occurred:", e)
@@ -104,25 +106,25 @@ def login():
 @app.route('/AddItem', methods=["POST", "GET"])
 def add_item():
     if request.method == 'POST':
-        Art_Name = request.form['Art_Name']
+        Name = request.form['Name']
         Amount = request.form['price']
         Description = request.form['Description']
+        image = request.form['image']
         
-        item = {'Art_Name': Art_Name, 'Amount': Amount, 'Description': Description}
+        item = {'Name': Name, 'Amount': Amount, 'Description': Description, 'image':image}
 
         db.Items.insert_one(item)
         if ('form submission success'):
                      item = []
-                     return redirect (url_for('getitem'))
-                    
+                     return render_template("catalog.html")
         else:
 
                   if ('form submission failed'):
                    return 'form unsuccessful'
         
-    return render_template("Addfinance.html")
+    return render_template("AddItem.html")
 
-# Display Finance
+# Display Catalog
 @app.route("/catalog", methods=["POST", "GET"] )
 def getCatalog():
      if request.method == 'GET':
@@ -132,6 +134,18 @@ def getCatalog():
                item.append(i)
 
      return render_template("catalog.html" , x=item)
+
+# Display Profile
+@app.route("/profile", methods=["POST", "GET"] )
+def getProfile():
+     if request.method == 'GET':
+          artists = []
+
+          for i in db.ArtistRegister.find():
+               artists.append(i)
+
+     return render_template("profile.html")
+
 
 
 if __name__ == "__main__":

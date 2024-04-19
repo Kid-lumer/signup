@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #f1f1f1;
-    background-image: url(https://i.pinimg.com/564x/b9/2f/98/b92f988fc97b572d769f63ee2a0dc45e.jpg);
+    background-image: url(https://i.pinimg.com/564x/78/40/2b/78402b85f1a204d2e9faa9584571904d.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,15 +13,16 @@ body {
 .container {
     background-color:transparent;
     max-width: 450px;
-    height: 700px;
+    height: 800px;
     margin: 0 auto;
-    background-color: hsl(0, 2%, 73%);
+    background-color: hwb(0 33% 67%);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 800px;
     border: 3px black;
-    margin-top: 20px;
+    margin-top: 50px;
+    color: #f0f0f0;
 }
 
 h2 {
@@ -88,4 +89,13 @@ form button {
     color: #08b13d;
     text-decoration: none;
     padding: 10px 20px;
+  }
+  .navbar{
+    background-color: #090909;
+    width: 1600px;
+    position: relative;
+    position: fixed;
+    margin-left: -20px;
+    
+
   }

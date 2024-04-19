@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #f1f1f1;
-    background-image: url(https://i.pinimg.com/564x/b9/2f/98/b92f988fc97b572d769f63ee2a0dc45e.jpg);
+    background-image: url(https://i.pinimg.com/564x/78/40/2b/78402b85f1a204d2e9faa9584571904d.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,28 +11,23 @@ body {
 }
 .container {
     width: 400px;
-    height: 500px;
+    height: 800px;
     margin: 100px auto;
     perspective: 1000px;
     float: left; /* Added float property */
     background-color: transparent;
+    margin-top: 200px;
     
 }
-nav {
-    background-color: #333;
-    position: fixed; /* Fixed position */
-    top: 0; /* Lock it at the top */
-    width: 100%; /* Full width of the viewport */
-    background-color: #333; /* Background color */
-    padding: 10px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-   margin-right: 500px;
-    float: left;
-}
+.navbar{
+    background-color: #090909;
+    width: 1600px;
+    position: relative;
+    position: fixed;
+    margin-left: -20px;
+    
+
+  }
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -60,13 +55,13 @@ nav ul {
   }
   .container {
     width: 400px;
-    height: 500px;
+    height: 700px;
     margin: 100px auto;
     perspective: 1000px;
     float: left; /* Added float property */
     background-color: transparent;
-    margin-top: 100px;
-    margin-left: 550px;
+    margin-top: 150px;
+    margin-left: 850px;
     
 }
 .card {
@@ -79,7 +74,22 @@ nav ul {
 .card.flipped {
     transform: rotateY(180deg);
 }
-.front,
+.front{
+    width: 100%;
+    height: 150%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(88, 88, 85);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    margin-top: 10px;
+}
 .back {
     width: 100%;
     height: 100%;
@@ -90,9 +100,11 @@ nav ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: hsl(0, 3%, 61%);
+    background-color: rgb(88, 88, 85);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    margin-top: 10px;
 }
 .back {
     transform: rotateY(180deg);

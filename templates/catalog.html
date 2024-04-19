@@ -14,9 +14,7 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-                  </svg>
+                
               <a class="navbar-brand" > <img  class="logo" src="/static/Pink and Purple Modern Gradient Arts and Crafts Logo.png" alt="Logo"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,7 +29,7 @@
                   </li>
                
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Artist</a>
+                    <a class="nav-link" href="/ArtistRegister">Artist</a>
                   </li>
                  
                 </ul>
@@ -39,70 +37,82 @@
               </div>
             </div>
           </nav>
+
+          <!-- <section class="recipes">
+            {% for i in breakfast %}
+            <div class="recipe">
+               
+                <p>{{i.title}}</p>
+                <p>{{i.description}}</p>
+                <p>{{i.ingredients}}</p>
+                <p>{{i.Instructions}}</p>
+            </div>
+            {% endfor %}
+        </section> -->
           <form action="/catalog" method="post">
           <div class="catalog">
             <h1>Product Catalog</h1>
             <div class="product-grid">
               <div class="product">
                 <img src="https://i.pinimg.com/474x/2d/2c/19/2d2c19674ff9ecd7c1974309f3ea5935.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
-              <a href=""></a>  <button></button>
+                <h3>Brugger</h3>
+                <p>R75 000.00</p>
+             
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/63/b5/0e/63b50e2d4fead942b0f7e6236dad8f5c.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Nathen</h3>
+                <p>R21 000.00</p>
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/c7/42/ea/c742ea787c0246e4489d2536e46d340e.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Roumor</h3>
+                <p>R60 000.00</p>
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/bd/f7/74/bdf774e406dab5c7e6ab876f56954e99.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Berlin</h3>
+                <p>R100 000.00</p>
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/d8/33/f0/d833f040b65207749dc17b3ca0ea0421.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Fox</h3>
+                <p>R47 000.00</p>
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/6e/ed/34/6eed3489939f8680a8c1f15f85bcf8e8.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Azark</h3>
+                <p>R58 000.00</p>
               </div>
               <div class="product">
                 <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <h3>Wikma</h3>
+                <p>R80 000.00</p>
               </div>
               <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <img src="https://i.pinimg.com/474x/5c/05/c3/5c05c34b4d39748c521c96825a636c20.jpg" alt="Product 1">
+                <h3>Plouter</h3>
+                <p>R20 0000.00</p>
               </div>
               <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <img src="https://i.pinimg.com/474x/8c/89/38/8c893873240fe90a83069bd5ec554e43.jpg" alt="Product 1">
+                <h3>Contra-Intra</h3>
+                <p>R500 000.00</p>
               </div>
               <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <img src="https://i.pinimg.com/474x/af/49/56/af49565deeb284ad7b9603f388ee6e27.jpg" alt="Product 1">
+                <h3>Septo</h3>
+                <p>R55 000.00</p>
               </div>
               <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <img src="https://i.pinimg.com/474x/d3/c6/89/d3c6893dd0b17fa9e99a9abbe1c0981a.jpg" alt="Product 1">
+                <h3>Winter-Teg</h3>
+                <p>R18 000.00</p>
               </div>
               <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
+                <img src="https://i.pinimg.com/474x/04/8f/7d/048f7dae67019fa81bb9a596ad6e2657.jpg" alt="Product 1">
+                <h3>Marlin</h3>
+                <p>R45 000.00</p>
               </div>
               <!-- Repeat the product div for other products -->
            <!-- ... -->

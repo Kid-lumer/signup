@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/profile.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                
+              <a class="navbar-brand" > <img  class="logo" src="/static/Pink and Purple Modern Gradient Arts and Crafts Logo.png" alt="Logo"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/signup">Buyer</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/signup">Seller</a>
+                  </li>
+               
+                  <li class="nav-item">
+                    <a class="nav-link" href="/ArtistRegister">Artist</a>
+                  </li>
+                 
+                </ul>
+               
+              </div>
+            </div>
+          </nav>
+          <!-- <section class="recipes">
+            {% for i in ArtistRegister %}
+            <div class="recipe">
+               
+                <p>{{i.full_name}}</p>
+                <p>{{i.email}}</p>
+                <p>{{i.Cell_No}}</p>
+                <p>{{i.Instructions}}</p>
+            </div>
+            {% endfor %}
+        </section> -->
+
+          
+          <div class="profile">
+            <img src="https://i.pinimg.com/474x/41/07/ac/4107ac787c0ab18f31ceaa9854d85290.jpg" alt="Profile Picture">
+            <h1>Mxolisi Sibisi</h1>
+            <p>Email: msibisi0@gmail.com.com</p>
+            <p>Cell No. :071 556 8755</p>
+            <p>Exquisite painting Artist.</p>
+            <a href="/AddItem"><button>Add Item</button></a>
+          </div>
+          <form action="/profile" method="post"></form>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+               <div class="card" style="width: 15rem;">
+                    <img src="https://i.pinimg.com/474x/d8/f4/14/d8f414354f2dd9fdb9790cbd0e9868d6.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Inspired by rainbow which represent people o different colours.</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col" ms-7>
+                <div class="card" style="width: 15rem;">
+                    <img src="https://i.pinimg.com/474x/8d/4a/32/8d4a32e8f9fad5f104b7efc342d86640.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Bringing wildest imaginations of my mind.</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 15rem;">
+                    <img src="https://i.pinimg.com/474x/cb/31/f0/cb31f0d4553e5f21fbab3900ab8831f4.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">When thoughts are so deep.</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+
+       
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="" async defer></script>
+    </body>
+</html>
