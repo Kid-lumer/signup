@@ -22,14 +22,14 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Buyer</a>
+                    <a class="nav-link active" aria-current="page" href="/signup">Buyer</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Seller</a>
+                    <a class="nav-link" aria-current="page" href="/ArtistRegister">Artist</a>
                   </li>
                
                   <li class="nav-item">
-                    <a class="nav-link" href="/ArtistRegister">Artist</a>
+                    <a class="nav-link" aria-current="page" href="getCatalog">Catalog</a>
                   </li>
                  
                 </ul>
@@ -38,89 +38,61 @@
             </div>
           </nav>
 
-          <!-- <section class="recipes">
-            {% for i in breakfast %}
-            <div class="recipe">
-               
-                <p>{{i.title}}</p>
-                <p>{{i.description}}</p>
-                <p>{{i.ingredients}}</p>
-                <p>{{i.Instructions}}</p>
-            </div>
+          <center><h1>Product Catalog</h1></center>
+ 
+<div class="product-grid">
+          <div class="product-list">
+            {% for i in item %}
+            
+            <div class="product">
+
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
+                    <strong><p>Name: </strong> {{i.Name}}</p>
+                    <strong><p>Price:</strong> {{ i.Amount }}</p>
+                    <strong><p>Description</strong>{{ i.Description }}</p>
+                  </div>
+                  <!-- <div class="col">
+                    <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
+                <strong><p>Name: </strong> {{i.Name}}</p>
+                <strong><p>Price:</strong> {{ i.Amount }}</p>
+                <strong><p>Description</strong>{{ i.Description }}</p>
+                  </div>
+                  <div class="col">
+                    <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
+                    <strong><p>Name: </strong> {{i.Name}}</p>
+                    <strong><p>Price:</strong> {{ i.Amount }}</p>
+                    <strong><p>Description</strong>{{ i.Description }}</p>
+                  </div>
+                </div>
+              </div>
+                <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
+                <strong><p>Name: </strong> {{i.Name}}</p>
+                <strong><p>Price:</strong> {{ i.Amount }}</p>
+                <strong><p>Description</strong>{{ i.Description }}</p>
+            </div> -->
             {% endfor %}
-        </section> -->
-          <form action="/catalog" method="post">
-          <div class="catalog">
-            <h1>Product Catalog</h1>
-            <div class="product-grid">
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/2d/2c/19/2d2c19674ff9ecd7c1974309f3ea5935.jpg" alt="Product 1">
-                <h3>Brugger</h3>
-                <p>R75 000.00</p>
-             
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/63/b5/0e/63b50e2d4fead942b0f7e6236dad8f5c.jpg" alt="Product 1">
-                <h3>Nathen</h3>
-                <p>R21 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/c7/42/ea/c742ea787c0246e4489d2536e46d340e.jpg" alt="Product 1">
-                <h3>Roumor</h3>
-                <p>R60 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/bd/f7/74/bdf774e406dab5c7e6ab876f56954e99.jpg" alt="Product 1">
-                <h3>Berlin</h3>
-                <p>R100 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/d8/33/f0/d833f040b65207749dc17b3ca0ea0421.jpg" alt="Product 1">
-                <h3>Fox</h3>
-                <p>R47 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/6e/ed/34/6eed3489939f8680a8c1f15f85bcf8e8.jpg" alt="Product 1">
-                <h3>Azark</h3>
-                <p>R58 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/2f/6d/0b/2f6d0bd0ecee8b46710a994f359a72d2.jpg" alt="Product 1">
-                <h3>Wikma</h3>
-                <p>R80 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/5c/05/c3/5c05c34b4d39748c521c96825a636c20.jpg" alt="Product 1">
-                <h3>Plouter</h3>
-                <p>R20 0000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/8c/89/38/8c893873240fe90a83069bd5ec554e43.jpg" alt="Product 1">
-                <h3>Contra-Intra</h3>
-                <p>R500 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/af/49/56/af49565deeb284ad7b9603f388ee6e27.jpg" alt="Product 1">
-                <h3>Septo</h3>
-                <p>R55 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/d3/c6/89/d3c6893dd0b17fa9e99a9abbe1c0981a.jpg" alt="Product 1">
-                <h3>Winter-Teg</h3>
-                <p>R18 000.00</p>
-              </div>
-              <div class="product">
-                <img src="https://i.pinimg.com/474x/04/8f/7d/048f7dae67019fa81bb9a596ad6e2657.jpg" alt="Product 1">
-                <h3>Marlin</h3>
-                <p>R45 000.00</p>
-              </div>
-              <!-- Repeat the product div for other products -->
-           <!-- ... -->
-            </div>
           </div>
-        </form> 
+        </div>
+              
         <script src="" async defer></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Document</title>
+</head>
+<body>
+  {{item}}
+</body>
+</html> -->

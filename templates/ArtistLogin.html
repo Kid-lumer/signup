@@ -10,17 +10,14 @@
         <link rel="stylesheet" href="/static/login.css">
     </head>
     <body>
+        <form action="/" method="post"></form>
         <div class="container">
             <h2>Login</h2>
             <form id="login-form" method="POST" action="">
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="Password" name="Password" placeholder="Password" required>
+                <input type="Password" name="signin_password" placeholder="signin_password" required>
                 <div class="form-group select-input">
-                    <select id="role" name="role">
-                        <option value="buyer">Select</option>
-                        <option value="buyer">Buyer</option>
-                        <option value="seller">Seller</option>
-                    </select>
+                    
                 </div>
                 <button type="submit">Login</button>
             </form>

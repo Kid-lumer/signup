@@ -26,11 +26,11 @@
                 <a class="nav-link active" aria-current="page" href="/signup">Buyer</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/signup">Seller</a>
+                <a class="nav-link" aria-current="page" href="/ArtistRegister">Artist</a>
               </li>
            
               <li class="nav-item">
-                <a class="nav-link" href="/ArtistRegister">Artist</a>
+                <a class="nav-link" aria-current="page" href="/catalog">Catalog</a>
               </li>
              
             </ul>
@@ -40,19 +40,22 @@
       </nav>
       <div class="container">
         <div class="">
-            <form action="/AddItem" method="post">
+            <form action="/AddItem1" method="post">
                <div class="form">
                    <center><h1>Add Item</h1></center>
                        
                    <div class="form-group">
-                                   <input type="text" name="Name" placeholder="Name" required>
-                                      <input type="number" name="price" placeholder="Price" required><br><br>
-                                       <textarea class="form-control" id="Description" placeholder="Brief Description of your piece" name="Description"></textarea>
+                        
+                        <input type="text" name="Name" placeholder="Name" required>
+                        <input type="email" name="email" id="email" placeholder="email" required>
+                        <input type="number" name="Amount" placeholder="Amount" required><br>
+                        <textarea class="form-control" id="Description" placeholder="Brief Description of your piece" name="Description"></textarea>
                                        
-                                        <label for="image">Choose Image:</label>
-                                        <input type="file" id="image" name="image" accept="image/*" required>
-                                      </div>
-                                        <center><button type="submit">Add</button></center>
+                        <label for="image">Choose Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                    
+                            <center><button type="submit">Add</button></center>
+                    </div>        
            
       </div> 
     </form> 
