@@ -51,8 +51,11 @@
                   <div class="col">
                     <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
                     <strong><p>Name: </strong> {{i.Name}}</p>
-                    <strong><p>Price:</strong> {{ i.Amount }}</p>
-                    <strong><p>Description</strong>{{ i.Description }}</p>
+                    <strong><p>Price: </strong> {{ i.Amount }}</p>
+                    <strong><p>Description: </strong>{{ i.Description }}</p>
+                    <form action="/delete_product" method="post">
+                      <input  type="hidden" id="delete_id" name="delete_id" value="{{ item._id }}"><br><input type="submit"  class="btn btn-primary" value="Delete">
+                    </form> 
                   </div>
                   <!-- <div class="col">
                     <img src="static/images/{{i.image}}" alt="xsehkweuhdc">

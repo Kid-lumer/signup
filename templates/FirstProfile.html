@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/FirstProfile.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                
+              <a class="navbar-brand" > <img  class="logo" src="/static/Pink and Purple Modern Gradient Arts and Crafts Logo.png" alt="Logo"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/signup">Buyer</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/ArtistRegister">Artist</a>
+                  </li>
+               
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/getCatalog">Catalog</a>
+                  </li>
+                 
+                </ul>
+               
+              </div>
+            </div>
+          </nav>
+          
+
+          
+          <div class="profile">
+            <img src="https://i.pinimg.com/474x/41/07/ac/4107ac787c0ab18f31ceaa9854d85290.jpg" alt="Profile Picture">
+            <h1>{{profile.full_name}}</h1>
+            <p>Email: {{profile.email}}</p>
+            <p>Cell No. :{{profile.Cell_No}}</p>
+            <a href="/profile"><button>My Items</button></a>
+          </div>
+          
+        </form>
+
+
+
+       
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="" async defer></script>
+    </body>
+</html>
