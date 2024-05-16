@@ -9,3 +9,8 @@ function getSelectValue(){
 }
 
 
+function gotoLandingPage1(){
+    window.location.href= "";
+}
+
+

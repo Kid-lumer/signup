@@ -55,8 +55,11 @@
     font-weight: bold;
     color: black;
 }
-.container{
- 
-}
- 
+button{
+    background-color: black;
+    width: 150px;
+    height: 40px;
+    color: hsl(0, 22%, 96%);
+    border-radius: 10px;
+  }
   

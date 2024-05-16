@@ -44,7 +44,11 @@
             <h1>{{profile.full_name}}</h1>
             <p>Email: {{profile.email}}</p>
             <p>Cell No. :{{profile.Cell_No}}</p>
-            <a href="/profile"><button>My Items</button></a>
+            <!-- <a href="/profile"><button>My Items</button></a> -->
+            <form action="/AddItem" method="post">
+                <input type="hidden" id="add" name="add" value="add"><br><br>
+                <input type="submit" value="Add">
+              </form>
           </div>
           
         </form>
@@ -53,6 +57,6 @@
 
        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="" async defer></script>
+        <script src="/static/landing.js" async defer></script>
     </body>
 </html>

@@ -114,10 +114,16 @@ def artist_login():
 
 
  #Add Item
-@app.route('/AddItem')
+@app.route('/AddItem', methods=["POST"])
 def add_item():   
+    if request.method == 'POST':
+        return render_template("AddItem.html")
     return render_template("AddItem.html")
 
+@app.route('/profile', methods=["GET"])
+def getItems(): 
+    items = db.Items.find  # Retrieve all items from the database
+    return render_template("profile.html" , item =items)
 
 @app.route('/AddItem1', methods=["POST", "GET"])
 def add_item1():
@@ -129,31 +135,98 @@ def add_item1():
         image = request.form['image']
         
         item = {'Name': Name, 'email': email , 'Amount': Amount, 'Description': Description, 'image':image}
-        
+
+
         db.Items.insert_one(item)
+        if ('form submission success'):
+                    # print(request.form['Name'])
+                    item = db.Items.find_one({'email': email})  # Exclude password from the result
+                    # return redirect(url_for('getItems', item = item))
+                    return render_template("profile.html", item = item)
         
-   
-        # Redirect to the /profile route after successfully adding an item
-        return render_template("catalog.html", item = item)
+        else:
 
-    return "Success"
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+     
+        
+    return ("Success")
 
 
 
-@app.route('/profile', methods=["GET"])
-def getItems(): 
-    items = db.Items.find  # Retrieve all items from the database
-    return render_template("profile.html" , i=items)
 
-# @app.route('/profile', methods=["GET"])
-# def getItems(): 
-#     if 'email' in session:  # Check if user is logged in
-#         email = session['email']
-#         # Retrieve items associated with the user's email
-#         item = list(db.Items.find({'email': email}))
-#         return render_template("profile.html" , items=item)
-#     else:
-#         return "Please login to view your profile"
+# Display Catalog
+@app.route("/getCatalog")
+def getCatalog():
+    item = []
+    for i in db.Items.find():
+        item.append(i)
+    print(item)
+    return render_template("catalog.html" , item = item)
+
+@app.route('/delete_item', methods=["POST"])
+def delete_product():
+    # Delete the product from MongoDB
+
+    if request.method == 'POST':
+        delete_id = request.form['delete_id']
+        print(delete_id)
+
+    db.Items.delete_one({"_id": ObjectId(delete_id)})
+
+    # Redirect back to the catalog page
+    item = []
+    for i in db.Items.find():
+        item.append(i)
+        print(item)
+    return render_template("catalog.html", item = item)
+
+
+if __name__ == "__main__":
+    app.run (debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # @app.route('/AddItem1', methods=["POST", "GET"])
@@ -166,62 +239,39 @@ def getItems():
 #         image = request.form['image']
         
 #         item = {'Name': Name, 'email': email , 'Amount': Amount, 'Description': Description, 'image':image}
-
-
-#         db.Items.insert_one(item)
-#         if ('form submission success'):
-#                     # print(request.form['Name'])
-#                     item = db.Items.find_one({'email': email})  # Exclude password from the result
-
-#                     return render_template("profile.html", item = item)
-#         else:
-
-#                   if ('form submission failed'):
-#                    return 'form unsuccessful'
-     
         
-#     return ("Success")
+#         db.Items.insert_one(item)
+        
+   
+        
+#         return redirect(url_for('getCatalog', item = item))
+#         # return render_template("catalog.html", item = item)
+
+#     return "Success"
+
+# @app.route('/profile', methods=["GET"])
+# def getItems(): 
+#     if 'email' in session:  # Check if user is logged in
+#         email = session['email']
+#         # Retrieve items associated with the user's email
+#         item = list(db.Items.find({'email': email}))
+#         return render_template("profile.html" , items=item)
+#     else:
+#         return "Please login to view your profile"  
 
 
 
-
-# Display Catalog
-@app.route("/getCatalog")
-def getCatalog():
-    item = []
-    for i in db.Items.find():
-        item.append(i)
-
-    return render_template("catalog.html" , item = item)
-
-@app.route('/delete_product', methods=["POST"])
-def delete_product():
-    # Delete the product from MongoDB
-
-    if request.method == 'POST':
-        delete_id = request.form['delete_id']
-        print(delete_id)
-
-    db.Item.delete_one({"_id": ObjectId(delete_id)})
-
-    # Redirect back to the catalog page
-    return redirect(url_for('profile'))
 #Display Profile
 # @app.route("/profile", methods=["POST", "GET"] )
 # def getProfile():
 #      if request.method == 'GET':
-#           artists = []
+#           item = []
 
-#           for i in db.ArtistRegister.find():
-#                artists.append(i)
+#           for i in db.Items.find():
+#                item.append(i)
 
-#      return render_template("profile.html", artist=artists)
+#      return render_template("profile.html", item=item)
 
 # @app.route('/profile')
 # def profile():   
-#     return render_template("profile.html")
-
-
-
-if __name__ == "__main__":
-    app.run (debug=True)
+#     return render_template("profile.html",)
