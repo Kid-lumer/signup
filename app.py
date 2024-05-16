@@ -181,6 +181,65 @@ def delete_product():
         print(item)
     return render_template("catalog.html", item = item)
 
+@app.route('/item/<item_id>')
+def item(item_id):
+    # Retrieve item details from the database based on the item_id
+    item = retrieve_item_from_database(item_id)
+
+    # Render the item.html template and pass the item details
+    return render_template('item.html', item=item)
+
+@app.route('/cart')
+def cart():
+    # Retrieve the cart items from the session
+    cart_items = session.get('cart', [])
+
+    # Pass the cart items to the cart.html template
+    return render_template('cart.html', cart_items=cart_items)
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    item_id = request.form.get('item_id')
+    item = retrieve_item_from_database(item_id)
+
+    # Retrieve the cart items from the session
+    cart_items = session.get('cart', [])
+
+    # Add the item to the cart
+    cart_items.append(item)
+
+    # Update the cart items in the session
+    session['cart'] = cart_items
+
+    return redirect('/cart')
+
+@app.route('/cart/remove', methods=['POST'])
+def remove_from_cart():
+    selected_items = request.form.getlist('selected_items')
+
+    # Retrieve the cart items from the session
+    cart_items = session.get('cart', [])
+
+    # Remove the selected items from the cart
+    cart_items = [item for item in cart_items if item.id not in selected_items]
+
+    # Update the cart items in the session
+    session['cart'] = cart_items
+
+    return redirect('/cart')
+
+@app.route('/cart/checkout', methods=['POST'])
+def checkout():
+    # Retrieve the cart items from the session
+    cart_items = session.get('cart', [])
+
+    # Perform the necessary operations for checkout, such as processing payment, updating inventory, etc.
+
+    # Clear the cart after successful checkout
+    session.pop('cart', None)
+
+    return redirect('/checkout_success')
+
 
 if __name__ == "__main__":
     app.run (debug=True)
