@@ -38,13 +38,25 @@
     </div>
   </nav>
 
-  <div class="container">
-    <h1>{{ item.name }}</h1>
-    <img src="{{ item.image_url }}" alt="{{ item.name }}" class="item-image">
-    <p>{{ item.description }}</p>
-    <p>Price: ${{ item.price }}</p>
-</div>
+ <div class="view">
+  <div >
+    <img src="static/images/{{image}}" width="390" height="300" >
+  </div>
 
-    <!-- Your scripts and other content here -->
+  <table>
+    <tr>
+      <th>Name</th>
+      <td>{{Name}}</td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td>{{Amount}}</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>{{Description}}</td>
+    </tr>
+    <a href="/ViewCart" class="btn btn-primary">Add To Cart</a>
+  </div>
 </body>
 </html>

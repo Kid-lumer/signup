@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, url_for, redirect,Response, url_for, session
+from flask import Flask, render_template, request, url_for, redirect,Response, session
 from flask_pymongo import PyMongo
-from bson.objectid import *
+from bson.objectid import ObjectId
 
 app = Flask(__name__ ,static_url_path=('/static'))
+app.secret_key = 'super_secret_key'
 app.config["MONGO_URI"] = "mongodb://localhost:27017/SoloProject"
 Mongo = PyMongo(app)
 db = Mongo.db
+collection = db['Items']
 
 # landing page
 @app.route('/')
@@ -22,39 +24,39 @@ def signup():
         email = request.form["email"]
         cell_no = request.form["CellNo."]
         password = request.form["password"]
-
-        signup_details = {"full_name": full_name, "email": email, "Cell_No": cell_no, "password": password}
+        role = request.form['role']
+        signup_details = {"full_name": full_name, "email": email, "Cell_No": cell_no, "password": password, 'role':role}
 
         db.signup.insert_one(signup_details)
 
         # Check if insertion was successful
         if signup_details:
-            return render_template('login.html', success=True)
+            return render_template('register.html', success=True)
         else:
             return render_template('register.html', success=False)
 
     return render_template('register.html')
 
 #Artist register
-@app.route('/ArtistRegister', methods=["POST", "GET"])
-def register():
-    if request.method == "POST":
-        full_name = request.form["name"]
-        email = request.form["email"]
-        cell_no = request.form["CellNo."]
-        password = request.form["password"]
+# @app.route('/ArtistRegister', methods=["POST", "GET"])
+# def register():
+#     if request.method == "POST":
+#         full_name = request.form["name"]
+#         email = request.form["email"]
+#         cell_no = request.form["CellNo."]
+#         password = request.form["password"]
+#         role = request.form['role']
+#         register_details = {"full_name": full_name, "email": email, "Cell_No": cell_no, "password": password, 'role':role}
 
-        register_details = {"full_name": full_name, "email": email, "Cell_No": cell_no, "password": password}
+#         db.ArtistRegister.insert_one(register_details)
 
-        db.ArtistRegister.insert_one(register_details)
+#         # Check if insertion was successful
+#         if register_details:
+#             return render_template('ArtistRegister.html', success=True)
+#         else:
+#             return render_template('ArtistRegister.html', success=False)
 
-        # Check if insertion was successful
-        if register_details:
-            return render_template('ArtistRegister.html', success=True)
-        else:
-            return render_template('ArtistRegister.html', success=False)
-
-    return render_template('ArtistRegister.html')
+#     return render_template('ArtistRegister.html')
 
 
 #Buyer Login
@@ -63,46 +65,43 @@ def buyer_login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['signin_password']
-
+        role = request.form['role']
         # Query the database for the user
         user = db.signup.find_one({'email': email, 'password': password })  # Exclude password from the result
-
-        if ('form submission success'):
-                    item = []
-                    for i in db.Items.find():
-                        item.append(i)
-                    print(item)
-                    return render_template("catalog.html", item = item)
-        else:
-            # Login failed, render login page with an error message
-            error_message = "Invalid email or password. Please try again."
-            return render_template("register.html", error_message=error_message)
-   
+        if user:
+            if role == 'artist':
+                item = db.Items.find({'email': email})  # Exclude password from the result
+                return render_template("profile.html", item = item)
+            else:
+                item = db.Items.find()  # Exclude password from the result
+                return render_template("catalog.html", item = item)
+            
+        
     # GET request, render login page
     return render_template("login.html")
 
 # Artist Login Page
 
-@app.route('/login_artist', methods=["POST", "GET"])
-def artist_login():
-    if request.method == 'POST':
-        email = request.form['email']
-        signin_password = request.form['signin_password']
+# @app.route('/login_artist', methods=["POST", "GET"])
+# def artist_login():
+#     if request.method == 'POST':
+#         email = request.form['email']
+#         signin_password = request.form['signin_password']
 
-        # Query the database for the user
-        profile = db.ArtistRegister.find_one({'email': email, 'password': signin_password})  # Exclude password from the result
+#         # Query the database for the user
+#         profile = db.ArtistRegister.find_one({'email': email, 'password': signin_password})  # Exclude password from the result
     
-        if profile:
-            # Login successful, render profile page
-            return render_template("FirstProfile.html", profile=profile )
+#         if profile:
+#             # Login successful, render profile page
+#             return render_template("FirstProfile.html", profile=profile )
             
-        else:
-            # Login failed, render login page with an error message
-            error_message = "Invalid email or password. Please try again."
-            return render_template("register.html", error_message=error_message)
+#         else:
+#             # Login failed, render login page with an error message
+#             error_message = "Invalid email or password. Please try again."
+#             return render_template("register.html", error_message=error_message)
 
-    # GET request, render login page
-    return render_template("FirstProfile.html")
+#     # GET request, render login page
+#     return render_template("FirstProfile.html")
 
 # @app.route('/profile', methods= ["GET"])
 # def getItems(): 
@@ -140,7 +139,7 @@ def add_item1():
         db.Items.insert_one(item)
         if ('form submission success'):
                     # print(request.form['Name'])
-                    item = db.Items.find_one({'email': email})  # Exclude password from the result
+                    item = db.Items.find()  # Exclude password from the result
                     # return redirect(url_for('getItems', item = item))
                     return render_template("profile.html", item = item)
         
@@ -149,9 +148,8 @@ def add_item1():
                   if ('form submission failed'):
                    return 'form unsuccessful'
      
-        
+         
     return ("Success")
-
 
 
 
@@ -179,28 +177,33 @@ def delete_product():
     for i in db.Items.find():
         item.append(i)
         print(item)
-    return render_template("catalog.html", item = item)
+    return render_template("profile.html", item = item)
 
-@app.route('/item/<item_id>')
-def item(item_id):
-    # Retrieve item details from the database based on the item_id
-    item = retrieve_item_from_database(item_id)
+#View item
+# from flask import Blueprint, render_template, request, redirect, url_for, flash
+@app.route('/viewproduct', methods=['GET', 'POST'])
+def view():
+    
+    if request.method == 'POST':
+       
+        id = request.form['id']
+        Name = request.form['Name']
+        Amount = request.form['Amount']
+        Description = request.form['Description']
+        image = request.form['image']
+    
+        return render_template('ViewItem.html', id=id, Name=Name, Description=Description, Amount=Amount, image=image)
 
-    # Render the item.html template and pass the item details
-    return render_template('item.html', item=item)
 
-@app.route('/cart')
-def cart():
-    # Retrieve the cart items from the session
-    cart_items = session.get('cart', [])
-
-    # Pass the cart items to the cart.html template
-    return render_template('cart.html', cart_items=cart_items)
-
-@app.route('/add_to_cart', methods=['POST'])
+@app.route('/AddToCart', methods=['POST'])
 def add_to_cart():
-    item_id = request.form.get('item_id')
-    item = retrieve_item_from_database(item_id)
+    # Get item details from the form submission
+    id = request.form.get('id')
+    Name = request.form.get('Name')
+    Amount = request.form.get('Amount')
+
+    # Create item dictionary
+    item = {'id': id, 'Name': Name, 'Amount': Amount}
 
     # Retrieve the cart items from the session
     cart_items = session.get('cart', [])
@@ -211,7 +214,15 @@ def add_to_cart():
     # Update the cart items in the session
     session['cart'] = cart_items
 
-    return redirect('/cart')
+    return redirect('ViewCart.html')
+
+@app.route('/ViewCart')
+def cart():
+    # Retrieve the cart items from the session
+    cart_items = session.get('cart', [])
+
+    # Pass the cart items to the cart.html template
+    return render_template('ViewCart.html', cart_items=cart_items)
 
 @app.route('/cart/remove', methods=['POST'])
 def remove_from_cart():
@@ -241,8 +252,40 @@ def checkout():
     return redirect('/checkout_success')
 
 
+@app.route('/Edit', methods=['POST'])
+def edit_item():
+    if request.method == 'POST':
+        update_id = request.form['update_id']
+        email = request.form['email']
+        item_id = ObjectId(update_id)
+    
+    # Retrieve the item from MongoDB collection
+        
+        return render_template("edit.html", item_id = item_id, email=email)
+
+@app.route('/Edit2', methods=['POST'])
+def edit_item2():
+    if request.method == 'POST':
+        update_id = request.form['update_id']
+        email = request.form['email']
+        name = request.form['Name']
+        Amount = request.form['Amount']
+        description = request.form['Description']
+        image = request.form['image']
+        item_id = ObjectId(update_id)
+    
+    # Retrieve the item from MongoDB collection
+        item = db.Items.update_one({'_id': item_id}, {'$set': {'Name':name, 'email':email, 'Description':description, 'Amount' :Amount, 'image':image  }})
+    
+        item = db.Items.find({'email': email})  # Exclude password from the result
+        # return redirect(url_for('getItems', item = item))
+        return render_template("profile.html", item = item)
+
 if __name__ == "__main__":
     app.run (debug=True)
+
+
+
 
 
 

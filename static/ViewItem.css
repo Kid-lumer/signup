@@ -76,5 +76,15 @@ body {
   .card{
     margin-left: 50px;
   }
+  .view{
+    align-items: center;
+    margin-left: 500px;
+    margin-top: 100px;
+    border: 1px solid black;
+    width: 500px;
+    align-content: center;
+    display: grid;
+    justify-content: center; 
+  }
 
   

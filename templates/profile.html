@@ -37,20 +37,35 @@
     </div>
   </nav>
 
-    <a href="/AddItem"><button>Add Item</button></a>
     <div class="container text-center">
         <div class="row">
             <div class="col">
                 <div class="product-list">
-                    <div class="product">
-                      <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['Name'] }}">
-                      <strong><p>Name: </strong>{{ item.Name }}</p>
-                        <strong><p>Price:</strong>{{ item.Amount }}</p>
-                        <strong><p>Description:</strong>{{ item.Description }}</p>
-                        <form action="/delete_item" method="post">
-                          <input  type="hidden" id="delete_id" name="delete_id" value="{{ item._id }}"><br><input type="submit"  class="btn btn-primary" value="Delete">
-                        </form> 
+                      {% for i in item %}
+  
+                      <div class="product">
+                    
+                        <div class="container text-center">
+                          <div class="row">
+                            <div class="col">
+                              <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
+                              <strong><p>Name: </strong> {{i.Name}}</p>
+                              <strong><p>Price: </strong> {{ i.Amount }}</p>
+                              <strong><p>Description: </strong>{{ i.Description }}</p>
+                            </div>
+                            <form action="/delete_item" method="post">
+                              <input  type="hidden" id="delete_id" name="delete_id" value="{{ i._id }}"><br><input type="submit"  class="btn btn-primary" value="Delete">
+                            </form> 
+                            <form action="/Edit" method="post">
+                              <input  type="hidden" id="update_id" name="update_id" value="{{ i._id }}"><br><input  type="hidden" id="email" name="email" value="{{ i._email }}"><br><input type="submit"  class="btn btn-primary" value="Update99">
+                            </form> 
+                      {% endfor %}
+                      <form action="/AddItem" method="post">
+                        <input type="hidden" id="add" name="add" value="add"><br><br>
+                        <input type="submit" value="Add">
+                      </form>
                     </div>
+                    
                 </div>
             </div>
         </div>

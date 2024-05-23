@@ -38,9 +38,9 @@
       </nav>
       <div class="container">
         <div class="">
-            <form action="/AddItem1" method="post">
+            <form action="/Edit2" method="post">
                <div class="form">
-                   <center><h1>Add Item</h1></center>
+                   <center><h1>Edit Item</h1></center>
                        
                    <div class="form-group">
                         
@@ -48,11 +48,13 @@
                         <input type="email" name="email" id="email" placeholder="email" required>
                         <input type="number" name="Amount" placeholder="Amount" required><br>
                         <textarea class="form-control" id="Description" placeholder="Brief Description of your piece" name="Description"></textarea>
-                                       
+                        <input  type="hidden" id="update_id" name="update_id" value="{{ item_id }}">
+                        <input  type="hidden" id="email" name="email" value="{{ email }}">
+
                         <label for="image">Choose Image:</label>
                         <input type="file" id="image" name="image" accept="image/*" required>
                     
-                            <center><button type="submit">Add</button></center>
+                            <center><button type="submit">Edit</button></center>
                     </div>        
            
       </div> 

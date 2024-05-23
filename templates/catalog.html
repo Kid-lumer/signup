@@ -53,29 +53,19 @@
                     <strong><p>Name: </strong> {{i.Name}}</p>
                     <strong><p>Price: </strong> {{ i.Amount }}</p>
                     <strong><p>Description: </strong>{{ i.Description }}</p>
-                    <form action="/delete_product" method="post">
-                      <input  type="hidden" id="delete_id" name="delete_id" value="{{ item._id }}"><br><input type="submit"  class="btn btn-primary" value="Delete">
-                    </form> 
+                  
                   </div>
-                  <!-- <div class="col">
-                    <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
-                <strong><p>Name: </strong> {{i.Name}}</p>
-                <strong><p>Price:</strong> {{ i.Amount }}</p>
-                <strong><p>Description</strong>{{ i.Description }}</p>
-                  </div>
-                  <div class="col">
-                    <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
-                    <strong><p>Name: </strong> {{i.Name}}</p>
-                    <strong><p>Price:</strong> {{ i.Amount }}</p>
-                    <strong><p>Description</strong>{{ i.Description }}</p>
-                  </div>
-                </div>
-              </div>
-                <img src="static/images/{{i.image}}" alt="xsehkweuhdc">
-                <strong><p>Name: </strong> {{i.Name}}</p>
-                <strong><p>Price:</strong> {{ i.Amount }}</p>
-                <strong><p>Description</strong>{{ i.Description }}</p>
-            </div> -->
+                  <form action="/viewproduct" method="post">
+                    <input type="hidden" name="id" value={{i._id}}>
+                    <input type="hidden" name="Name" value={{i.Name}}>
+                    <input type="hidden" name="email" value={{i.email}}>
+                    <input type="hidden" name="Amount" value={{i.Amount}}>
+                    <input type="hidden" name="Description" value={{i.Description}}>
+                    <input type="hidden" name="image" value="{{ i.image }}">
+                  
+                    <input type="submit" value="View Item">
+                  </form>
+    
             {% endfor %}
           </div>
         </div>
