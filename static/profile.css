@@ -69,8 +69,13 @@ body {
     border-radius: 10px;
   }
   .container{
-    margin-left: 200px;
-    width: 1000px;
+    margin-left: 290px;
+    width: 800px;
+    align-content: center;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    
    
   }
   .card{

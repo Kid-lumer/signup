@@ -36,11 +36,30 @@
        
       </div>
     </div>
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
   </nav>
 
   <h1>Shopping Cart</h1>
+
+
+ 
+  <div >
+    <img src="static/images/{{image}}" width="390" height="300" >
+  </div>
     <table>
-        <thead>
+
+        <tr>
+            <th>Name</th>
+            <td>{{Name}}</td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td>{{Amount}}</td>
+          </tr>
+        <!-- <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -52,18 +71,18 @@
             <tr>
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
-                <td>${{ item.price }}</td>
+                <td>R{{ item.Amount }}</td>
             </tr>
             {% endfor %}
-        </tbody>
+        </tbody> -->
         <tfoot>
             <tr>
                 <td colspan="2">Total</td>
-                <td>${{ total_price }}</td>
+                <td>R{{ total_price }}</td>
             </tr>
         </tfoot>
     </table>
-
+    
     <!-- Your scripts and other content here -->
 </body>
 </html>

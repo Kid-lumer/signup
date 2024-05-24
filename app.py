@@ -80,36 +80,7 @@ def buyer_login():
     # GET request, render login page
     return render_template("login.html")
 
-# Artist Login Page
 
-# @app.route('/login_artist', methods=["POST", "GET"])
-# def artist_login():
-#     if request.method == 'POST':
-#         email = request.form['email']
-#         signin_password = request.form['signin_password']
-
-#         # Query the database for the user
-#         profile = db.ArtistRegister.find_one({'email': email, 'password': signin_password})  # Exclude password from the result
-    
-#         if profile:
-#             # Login successful, render profile page
-#             return render_template("FirstProfile.html", profile=profile )
-            
-#         else:
-#             # Login failed, render login page with an error message
-#             error_message = "Invalid email or password. Please try again."
-#             return render_template("register.html", error_message=error_message)
-
-#     # GET request, render login page
-#     return render_template("FirstProfile.html")
-
-# @app.route('/profile', methods= ["GET"])
-# def getItems(): 
-#     item = []
-#     for i in db.Items.find():
-#         item.append(i)
-
-#     return render_template("profile.html" , item = item) 
 
 
  #Add Item
@@ -214,7 +185,7 @@ def add_to_cart():
     # Update the cart items in the session
     session['cart'] = cart_items
 
-    return redirect('ViewCart.html')
+    return redirect('ViewCart.html', cart_items = cart_items)
 
 @app.route('/ViewCart')
 def cart():
@@ -222,7 +193,7 @@ def cart():
     cart_items = session.get('cart', [])
 
     # Pass the cart items to the cart.html template
-    return render_template('ViewCart.html', cart_items=cart_items)
+    return render_template('ViewCart.html', item=cart_items)
 
 @app.route('/cart/remove', methods=['POST'])
 def remove_from_cart():
