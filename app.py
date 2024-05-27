@@ -185,7 +185,8 @@ def add_to_cart():
     # Update the cart items in the session
     session['cart'] = cart_items
 
-    return redirect('ViewCart.html', cart_items = cart_items)
+    # Redirect to the view cart page
+    return redirect(url_for('cart'))
 
 @app.route('/ViewCart')
 def cart():
