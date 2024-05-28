@@ -151,7 +151,7 @@ def delete_product():
     return render_template("profile.html", item = item)
 
 #View item
-# from flask import Blueprint, render_template, request, redirect, url_for, flash
+
 @app.route('/viewproduct', methods=['GET', 'POST'])
 def view():
     
