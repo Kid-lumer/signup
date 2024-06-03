@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect,Response, s
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+
 app = Flask(__name__ ,static_url_path=('/static'))
 app.secret_key = 'super_secret_key'
 app.config["MONGO_URI"] = "mongodb://localhost:27017/SoloProject"
@@ -37,26 +38,6 @@ def signup():
 
     return render_template('register.html')
 
-#Artist register
-# @app.route('/ArtistRegister', methods=["POST", "GET"])
-# def register():
-#     if request.method == "POST":
-#         full_name = request.form["name"]
-#         email = request.form["email"]
-#         cell_no = request.form["CellNo."]
-#         password = request.form["password"]
-#         role = request.form['role']
-#         register_details = {"full_name": full_name, "email": email, "Cell_No": cell_no, "password": password, 'role':role}
-
-#         db.ArtistRegister.insert_one(register_details)
-
-#         # Check if insertion was successful
-#         if register_details:
-#             return render_template('ArtistRegister.html', success=True)
-#         else:
-#             return render_template('ArtistRegister.html', success=False)
-
-#     return render_template('ArtistRegister.html')
 
 
 #Buyer Login
@@ -172,9 +153,10 @@ def add_to_cart():
     id = request.form.get('id')
     Name = request.form.get('Name')
     Amount = request.form.get('Amount')
+    image = request.form['image']
 
     # Create item dictionary
-    item = {'id': id, 'Name': Name, 'Amount': Amount}
+    item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
 
     # Retrieve the cart items from the session
     cart_items = session.get('cart', [])

@@ -31,15 +31,14 @@
                   <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="getCatalog">Catalog</a>
                   </li>
-                 
+                  <li id="cartIcon"><a href="#"><img src="https://i.pinimg.com/474x/8e/5f/a6/8e5fa6f223b0329493d4b218c0e6c3f9.jpg" alt="Cart"><span id="cartCount">0</span></a></li>
+                  <li id="cartIcon"><a href="/signup"><img src="https://i.pinimg.com/474x/34/c3/33/34c3332cb8eb6c448bb4544cd7df4bcd.jpg" alt="Cart"></span></a></li>
+
                 </ul>
                
               </div>
             </div>
-            <div class="cart-icon" onclick="toggleCart()">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-count">0</span>
-          </div>
+            
           </nav>
 
           <center><h1>Product Catalog</h1></center>
@@ -66,9 +65,11 @@
                     <input type="hidden" name="Amount" value={{i.Amount}}>
                     <input type="hidden" name="Description" value={{i.Description}}>
                     <input type="hidden" name="image" value="{{ i.image }}">
-                  
                     <input type="submit" value="View Item">
                   </form>
+
+                  <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+
     
             {% endfor %}
           </div>

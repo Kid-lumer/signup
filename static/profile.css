@@ -104,5 +104,15 @@ body {
   margin-left: 60px;
   margin-top: 50px;
 }
+#cartIcon {
+  position: relative;
 
+}
+
+#cartIcon img {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
+  vertical-align: middle;
+  margin-top: -5px;
+}
   

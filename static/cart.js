@@ -17,3 +17,15 @@ function updateCartCount(count) {
     const cartCount = document.querySelector('.cart-count');
     cartCount.textContent = count;
 }
+
+
+let cartCount = 0;
+
+function addToCart() {
+  cartCount++;
+  updateCartCount();
+}
+
+function updateCartCount() {
+  document.getElementById('cartCount').innerText = cartCount;
+}
