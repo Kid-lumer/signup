@@ -4,28 +4,25 @@ function toggleCart() {
     const cartDropdown = document.getElementById('cartDropdown');
     cartOpen = !cartOpen;
     if (cartOpen) {
-        // Show cart dropdown
         cartDropdown.style.display = 'block';
     } else {
-        // Hide cart dropdown
         cartDropdown.style.display = 'none';
     }
 }
 
 // Example function to update cart count
 function updateCartCount(count) {
-    const cartCount = document.querySelector('.cart-count');
+    const cartCount = document.querySelector('#cartCount');
     cartCount.textContent = count;
 }
-
 
 let cartCount = 0;
 
 function addToCart() {
-  cartCount++;
-  updateCartCount();
+    cartCount++;
+    updateCartCount(cartCount);
 }
 
-function updateCartCount() {
-  document.getElementById('cartCount').innerText = cartCount;
+function updateCartCount(count) {
+    document.getElementById('cartCount').innerText = count;
 }
