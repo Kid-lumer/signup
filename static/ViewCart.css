@@ -76,5 +76,33 @@ body {
   .card{
     margin-left: 50px;
   }
+  button {
+    margin-top: -5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
 
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Disable styles for disabled button */
+button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Align the buttons and quantity */
+form {
+    display: inline-block;
+}
+
+p {
+    margin: 5px 0;
+}
   

@@ -37,6 +37,7 @@
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Action</th>
+                <th>Quantity</th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +52,21 @@
                         <button type="submit" class="btn btn-danger">Remove</button>
                     </form>
                 </td>
+                <td>
+                    <p><form action="/cart/update_quantity" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="{{ item.id }}">
+                            <button type="submit" name="quantity" value="{{ item.quantity - 1 }}" {% if item.quantity == 1 %}disabled{% endif %}>-</button>
+                        </form>
+                    {{ item.quantity }}
+                        <form action="/cart/update_quantity" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="{{ item.id }}">
+                            <button type="submit" name="quantity" value="{{ item.quantity + 1 }}">+</button>
+                        </form>
+                        
+                </td>
+                
             </tr>
+            
             {% endfor %}
         </tbody>
         <tfoot>

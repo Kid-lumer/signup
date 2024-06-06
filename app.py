@@ -164,6 +164,29 @@ def edit_item2():
         items = db.Items.find({'email': email})
         cart_count = len(session.get('cart', []))
         return render_template("profile.html", item=items, cart_count=cart_count)
+    
+@app.route('/cart/update_quantity', methods=['POST'])
+def update_cart_item_quantity():
+    id = request.form.get('id')
+    new_quantity = int(request.form.get('quantity'))
+    cart_items = session.get('cart', [])
+
+    # Find the item to update
+    for item in cart_items:
+        if item['id'] == id:
+            item['quantity'] = new_quantity
+            break
+
+    session['cart'] = cart_items
+
+    # Recalculate total price
+    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
+    session['total_price'] = total_price
+
+    return redirect(url_for('cart'))
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
