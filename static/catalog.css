@@ -29,11 +29,19 @@
     grid-gap: 500px;
     height: 500px;
 }
-
+input{
+    background-color: hsl(224, 85%, 60%);
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    color: hsl(210, 25%, 97%);
+}
 .product-list {
     text-align: center;
     height: 500px; /* You may want to adjust this */
     margin-bottom: 200px;
+    align-items: center;
+    margin-left: 50px;
 }
 
 .product img {
