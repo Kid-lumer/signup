@@ -37,34 +37,20 @@ body {
     width: 400px;
     border-radius: 15px;
   }
-  .navbar{
-    background-color: #090909;
-    width: 1600px;
-    position: relative;
-    position: fixed;
-    margin-left: -20px;
+  .navbar-nav{
+    margin-left: 450px;
+      }
     
-
-  }
-
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: fixed;
     
-  }
-  
-  nav li {
-    float: left;
-  }
-  
-  nav a {
-    display: block;
-    color: #08b13d;
-    text-decoration: none;
-    padding: 10px 20px;
-  }
+      .badge {
+        margin-top: 20px;
+        margin-right: 55px;
+        border-radius: -5px;
+      }
+    
+      .move{
+        margin-right: 55px;
+      }
 
   .container1 {
     width: 400px;

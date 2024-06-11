@@ -28,6 +28,7 @@
     grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
     grid-gap: 500px;
     height: 500px;
+    margin-right: 180px;
 }
 input{
     background-color: hsl(224, 85%, 60%);
@@ -110,4 +111,19 @@ button{
     .user-icon.active + .nav-links {
       display: block;
     }
+  }
+
+  .navbar-nav{
+margin-left: 450px;
+  }
+
+
+  .badge {
+margin-top: 20px;
+margin-right: 55px;
+border-radius: -5px;
+  }
+
+  .move{
+    margin-right: 55px;
   }
