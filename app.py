@@ -170,7 +170,7 @@ def update_cart_item_quantity():
     id = request.form.get('id')
     new_quantity = int(request.form.get('quantity'))
     cart_items = session.get('cart', [])
-
+    
     # Find the item to update
     for item in cart_items:
         if item['id'] == id:
