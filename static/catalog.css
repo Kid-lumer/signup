@@ -31,7 +31,7 @@
     margin-right: 180px;
 }
 input{
-    background-color: hsl(224, 85%, 60%);
+    background-color: hsl(0, 6%, 3%);
     width: 150px;
     height: 35px;
     border-radius: 5px;
@@ -44,7 +44,10 @@ input{
     align-items: center;
     margin-left: 50px;
 }
-
+.btn{
+  background-color: black;
+  border: 1px solid black;
+}
 .product img {
     width: 100%;
     max-height: 700px;
@@ -65,7 +68,7 @@ input{
     color: black;
 }
 button{
-    background-color: black;
+    background-color: rgb(134, 12, 12);
     width: 150px;
     height: 40px;
     color: hsl(0, 22%, 96%);
@@ -126,4 +129,10 @@ border-radius: -5px;
 
   .move{
     margin-right: 55px;
+  }
+
+  .yu
+  {
+    margin-top: 100px;
+    margin-bottom: -40px;
   }

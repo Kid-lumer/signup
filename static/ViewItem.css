@@ -118,15 +118,20 @@ body {
     
     
   .badge {
-    margin-top: 20px;
-    margin-right: 55px;
+    margin-top: 5px;
+    margin-right: 20px;
     border-radius: -5px;
+   
   }
     
   .move{
     margin-right: 55px;
     float: right;
-    margin-left: 1050px;
+    margin-left: 1020px;
+  }
+  .btn{
+    background-color: #0c0c0c;
+    border: 1px solid black;
   }
 
   
