@@ -12,33 +12,34 @@
 <body>
   <div class="fixed-top" >  
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-          <img class="logo" src="/static/Pink and Purple Modern Gradient Arts and Crafts Logo.png" alt="Logo">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-  
-  
-  
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="/signup">Action</a></li>
-                  <li class="nav-item"><a class="nav-link" aria-current="page" href="/ArtistRegister">Artist</a></li>
-                  <li class="nav-item"><a class="nav-link" aria-current="page" href="/getCatalog">Catalog</a></li>
-              </ul>
-  
-  <div class="move" >    <a href="/ViewCart" class="btn btn-outline-success my-2 my-sm-0">
-    Cart <span class="badge bg-secondary" id="cartCount">{{ cart_count }}</span>
-  </a>   </div>
-  
-          
-          </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+      <div class="container-fluid" style="margin-right: 1rem;">
+        <a class="navbar-brand" href="/"><img style="width: 5rem; height: 5rem;" class="logo" src="/static/Pink and Purple Modern Gradient Arts and Crafts Logo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/signup">Action</a></li>
+            </li>
+            <li class="nav-item">
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="/ArtistRegister">Artist</a></li>
+            </li>
+            <li class="nav-item">
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="/getCatalog">Catalog</a></li>
+            </li>
+          </ul>
+          <span class="navbar-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" float="right" class="bi bi-cart" viewBox="0 0 16 16">
+                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                </svg>
+                {{ cart_count }}
+          </span>
+        </div>
       </div>
-  </nav>
-  
-  
-  
+    </nav>
    </div>
     <div class="view">
         <div>

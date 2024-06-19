@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -114,11 +114,56 @@ def add_to_cart():
     Name = request.form.get('Name')
     Amount = request.form.get('Amount')
     image = request.form['image']
-    item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
+
+    # Create item with quantity set to 1
+    new_item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image, 'quantity': 1}
+
     cart_items = session.get('cart', [])
-    cart_items.append(item)
+    item_exists = False
+
+    # Check if item already exists in cart
+    for item in cart_items:
+        if item['id'] == new_item['id']:
+            item['quantity'] += 1
+            item_exists = True
+            break
+
+    # If item does not exist, append it to the cart
+    if not item_exists:
+        cart_items.append(new_item)
+
     session['cart'] = cart_items
+
     return redirect(url_for('cart'))
+
+
+
+# @app.route('/AddToCart', methods=['POST'])
+# def add_to_cart():
+#     id = request.form.get('id')
+#     Name = request.form.get('Name')
+#     Amount = request.form.get('Amount')
+#     image = request.form['image']
+
+#     item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
+#     cart_items = session.get('cart', [])
+#     cart_items.append(item)
+#     session['cart'] = cart_items
+#     return redirect(url_for('cart'))
+
+#     cart_items = session.get('cart', [])
+#     for item in cart_items:
+#             if item['id'] == cart_items['id']:
+#                 item['quantity'] += 1
+#                 break
+#             else:
+#              cart_items.append(cart_items)
+
+#              session['cart'] = cart_items
+
+#     return redirect(url_for('cart'))
+
+
 
 @app.route('/ViewCart')
 def cart():
@@ -136,10 +181,10 @@ def remove_from_cart():
     session['cart'] = cart_items
     return redirect(url_for('cart'))
 
-@app.route('/cart/checkout', methods=['POST'])
-def checkout():
-    session.pop('cart', None)
-    return redirect('/checkout_success')
+# @app.route('/cart/checkout', methods=['POST'])
+# def checkout():
+#     session.pop('cart', None)
+#     return redirect('/checkout_success')
 
 @app.route('/Edit', methods=['POST'])
 def edit_item():
@@ -164,28 +209,117 @@ def edit_item2():
         items = db.Items.find({'email': email})
         cart_count = len(session.get('cart', []))
         return render_template("profile.html", item=items, cart_count=cart_count)
-    
-@app.route('/cart/update_quantity', methods=['POST'])
-def update_cart_item_quantity():
-    id = request.form.get('id')
+
+# @app.route('/update_quantity', methods=['POST'])
+# def update_cart():
+#     data = request.get_json()
+#     product_id = data.get('id')
+#     field = data.get('field')
+#     value = data.get('value')
+
+#     cart = session.get('cart', [])
+#     for item in cart:
+#         if item['id'] == product_id:
+#             if field == 'quantity':
+#                 item['quantity'] = int(value)
+#             break
+
+#     session['cart'] = cart
+
+#     total_price = round(sum(item['Amount'] * item['quantity'] for item in cart), 2)
+#     item_price = round(next((item['Amount'] * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
+
+#     return jsonify({"item_price": item_price, "total_price": total_price})
+
+
+@app.route('/update_quantity', methods=['POST'])
+def update_quantity():
+    item_id = request.form.get('id')
     new_quantity = int(request.form.get('quantity'))
     cart_items = session.get('cart', [])
-    
-    # Find the item to update
+
+    # Find the item and update its quantity
     for item in cart_items:
-        if item['id'] == id:
+        if item['id'] == item_id:
             item['quantity'] = new_quantity
             break
 
     session['cart'] = cart_items
 
+    # Recalculate the total price
+    item_price = sum(float(item['Amount'] * item['quantity']) for item in cart_items if item['id'] == item_id)
+    print("t1hhhh", item_price)
     # Recalculate total price
     total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
     session['total_price'] = total_price
+    print("t1", total_price)
 
     return redirect(url_for('cart'))
 
+@app.route('/cart/update_quantity', methods=['POST'])
+def update_cart_item_quantity():
+    product_id = request.form.get('id')
+    new_quantity = int(request.form.get('quantity'))
+    cart_items = session.get('cart', [])
+    
+    # Find the item to update
+    for item in cart_items:
+        if item['id'] == product_id:
+            item['quantity'] = new_quantity
+            break
 
+    session['cart'] = cart_items
+
+    item_price = round(next((item['Amount'] * item['quantity'] for item in cart_items if item['id'] == product_id), 0), 2)
+    print("t1hhhh", item_price)
+    # Recalculate total price
+    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
+    session['total_price'] = total_price
+    print("t1", total_price)
+
+
+
+    return redirect(url_for('cart'))
+
+@app.route('/checkout',  methods=['POST'])
+def checkout():
+    cart_items = session.get('cart', [])
+
+    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
+    print("t2", total_price)
+    print("ytyvgyhgvjhvhgv")
+
+    
+    return render_template('checkout.html', cart_items=cart_items, total_price=total_price)
+
+@app.route('/process_payment', methods=['POST'])
+def process_payment():
+    # Here you would add your payment processing logic
+    card_number = request.form['cardNumber']
+    expiry_date = request.form['expiryDate']
+    cvv = request.form['cvv']
+    card_holder_name = request.form['cardHolderName']
+    
+    # Dummy processing logic (to be replaced with actual payment gateway integration)
+    if card_number and expiry_date and cvv and card_holder_name:
+        # Clear the cart after successful payment
+        session['cart'] = []
+        return redirect(url_for('thank_you'))
+    else:
+        return redirect(url_for('payment_failure'))
+
+@app.route('/thankyou')
+def thank_you():
+    return render_template("thankyou.html")
+
+
+@app.route('/payment_success')
+def payment_success():
+    return "Payment was successful! Thank you for your purchase."
+
+@app.route('/payment_failure')
+def payment_failure():
+    return "Payment failed. Please try again."
 
 
 if __name__ == "__main__":

@@ -1,137 +1,145 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .profile {
-    max-width: 1400px;
-    margin: 50px auto;
-    text-align: center;
-    background-color: transparent;
-    color: #0c0c0c;
-    margin-top: 20px;
-    
-  }
-  
-  .product img {
-    width: 100%;
-    max-height: 700px;
-    object-fit: cover;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-left: 60px;
-    margin-top: 50px;
+.body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f1f1f1;
+  /* background-image: url(https://i.pinimg.com/564x/b9/2f/98/b92f988fc97b572d769f63ee2a0dc45e.jpg); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-  
-  .profile h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .profile p {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  .logo{
-    height: 60px;
-    width: 60px;
-    float: left;
-    border-radius: 20px;
-    
+.logo {
+  height: 60px;
+  width: 60px;
+  float: left;
+  border-radius: 20px;
+}
+
+.catalog {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-grid {
+  display: flex; /* Changed to grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  grid-gap: 500px;
+  height: 500px;
+  margin-right: 180px;
+}
+input{
+  background-color: hsl(0, 6%, 3%);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+  color: hsl(210, 25%, 97%);
+}
+.product-list {
+  text-align: center;
+  height: 500px; /* You may want to adjust this */
+  margin-bottom: 200px;
+  align-items: center;
+  margin-left: 50px;
+}
+.btn{
+background-color: black;
+border: 1px solid black;
+}
+.product img {
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-left: 60px;
+  margin-top: 50px;
+}
+
+.product h3 {
+  margin-top: 10px;
+  color: black;
+}
+
+.product p {
+  font-weight: bold;
+  color: black;
+}
+button{
+  background-color: rgb(134, 12, 12);
+  width: 150px;
+  height: 40px;
+  color: hsl(0, 22%, 96%);
+  border-radius: 10px;
+}
+/* styles.css */
+#cartIcon {
+  position: relative;
+
+}
+
+#cartIcon img {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+#cartCount {
+  position: absolute;
+  top: 5;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 8px;
+}
+.user-icon {
+  cursor: pointer;
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
+}
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
   }
 
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    
-  }
-  
-  nav li {
-    float: left;
-  }
-  
-  nav a {
+  .user-icon {
     display: block;
-    color: #08b13d;
-    text-decoration: none;
-    padding: 10px 20px;
   }
 
-  button{
-    background-color: black;
-    width: 150px;
-    height: 40px;
-    color: hsl(0, 22%, 96%);
-    border-radius: 10px;
+  .user-icon.active + .nav-links {
+    display: block;
   }
-  .container{
-    margin-left: 200px;
-    width: 1000px;
-   
-  }
-  .card{
-    margin-left: 50px;
-  }
-  .view{
-    align-items: center;
-    margin-left: 420px;
-    margin-top: 100px;
-    border: 1px solid black;
-    width: 500px;
-    align-content: center;
-    display: grid;
-    justify-content: center; 
-  }
-  #cartIcon {
-    position: relative;
+}
 
-  }
-  
-  #cartIcon img {
-    width: 30px; /* Adjust the size as needed */
-    height: 30px; /* Adjust the size as needed */
-    vertical-align: middle;
-    margin-left: -20px;
-    margin-top: -10px;
-    
-  }
-  
-  #cartCount {
-    position: absolute;
-    top: 0;
-    right: -20;
-    margin-left: -10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 8px;
-  }
+.navbar-nav{
+margin-left: 450px;
+}
 
-  .navbar-nav{
-    margin-left: 500px;
-      }
-    
-    
-  .badge {
-    margin-top: 5px;
-    margin-right: 20px;
-    border-radius: -5px;
-   
-  }
-    
-  .move{
-    margin-right: 55px;
-    float: right;
-    margin-left: 1020px;
-  }
-  .btn{
-    background-color: #0c0c0c;
-    border: 1px solid black;
-  }
 
-  
+.badge {
+margin-top: 20px;
+margin-right: 55px;
+border-radius: -5px;
+}
+
+.move{
+  margin-right: 55px;
+}
+
+.yu
+{
+  margin-top: 100px;
+  margin-bottom: -40px;
+}
+.view{
+  height: 400px;
+  width: 500px;
+  align-content: center;
+  margin-left: 500px;
+  margin-top: 200px;
+}

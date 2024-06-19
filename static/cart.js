@@ -26,3 +26,12 @@ function addToCart() {
 function updateCartCount(count) {
     document.getElementById('cartCount').innerText = count;
 }
+
+    // Function to show confirmation dialog
+ function confirmRemoval(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
+        const userConfirmed = confirm("Are you sure you want to remove this item from your cart?");
+        if (userConfirmed) {
+            event.target.closest('form').submit(); // Submit the form if the user confirmed
+        }
+    }
