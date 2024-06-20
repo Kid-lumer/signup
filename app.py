@@ -11,8 +11,9 @@ db = Mongo.db
 # landing page
 @app.route('/')
 def landing():
+    full_name = session.get('full_name', 'Guest')
     cart_count = len(session.get('cart', []))
-    return render_template("index.html", cart_count=cart_count)
+    return render_template("index.html", cart_count=cart_count, full_name=full_name )
 
 # Signup page
 @app.route('/signup', methods=["POST", "GET"])
@@ -138,33 +139,6 @@ def add_to_cart():
 
 
 
-# @app.route('/AddToCart', methods=['POST'])
-# def add_to_cart():
-#     id = request.form.get('id')
-#     Name = request.form.get('Name')
-#     Amount = request.form.get('Amount')
-#     image = request.form['image']
-
-#     item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
-#     cart_items = session.get('cart', [])
-#     cart_items.append(item)
-#     session['cart'] = cart_items
-#     return redirect(url_for('cart'))
-
-#     cart_items = session.get('cart', [])
-#     for item in cart_items:
-#             if item['id'] == cart_items['id']:
-#                 item['quantity'] += 1
-#                 break
-#             else:
-#              cart_items.append(cart_items)
-
-#              session['cart'] = cart_items
-
-#     return redirect(url_for('cart'))
-
-
-
 @app.route('/ViewCart')
 def cart():
     cart_items = session.get('cart', [])
@@ -181,10 +155,7 @@ def remove_from_cart():
     session['cart'] = cart_items
     return redirect(url_for('cart'))
 
-# @app.route('/cart/checkout', methods=['POST'])
-# def checkout():
-#     session.pop('cart', None)
-#     return redirect('/checkout_success')
+
 
 @app.route('/Edit', methods=['POST'])
 def edit_item():
@@ -209,27 +180,6 @@ def edit_item2():
         items = db.Items.find({'email': email})
         cart_count = len(session.get('cart', []))
         return render_template("profile.html", item=items, cart_count=cart_count)
-
-# @app.route('/update_quantity', methods=['POST'])
-# def update_cart():
-#     data = request.get_json()
-#     product_id = data.get('id')
-#     field = data.get('field')
-#     value = data.get('value')
-
-#     cart = session.get('cart', [])
-#     for item in cart:
-#         if item['id'] == product_id:
-#             if field == 'quantity':
-#                 item['quantity'] = int(value)
-#             break
-
-#     session['cart'] = cart
-
-#     total_price = round(sum(item['Amount'] * item['quantity'] for item in cart), 2)
-#     item_price = round(next((item['Amount'] * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
-
-#     return jsonify({"item_price": item_price, "total_price": total_price})
 
 
 @app.route('/update_quantity', methods=['POST'])
@@ -276,7 +226,6 @@ def update_cart_item_quantity():
     total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
     session['total_price'] = total_price
     print("t1", total_price)
-
 
 
     return redirect(url_for('cart'))

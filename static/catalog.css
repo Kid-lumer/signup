@@ -97,25 +97,23 @@ button{
     padding: 2px 6px;
     font-size: 8px;
   }
-  .user-icon {
-    cursor: pointer;
-    width: 30px; /* Adjust the size as needed */
-    height: 30px; /* Adjust the size as needed */
-  }
-  @media screen and (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-  
-    .user-icon {
-      display: block;
-    }
-  
-    .user-icon.active + .nav-links {
-      display: block;
-    }
-  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
 
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-size: 16px;
+    color: #000;
+}
   .navbar-nav{
 margin-left: 450px;
   }
