@@ -126,9 +126,13 @@ def add_to_cart():
     for item in cart_items:
         if item['id'] == new_item['id']:
             item['quantity'] += 1
+            item['total_amount'] = sum(float(item['Amount']) * item['quantity'] for item in cart_items if item['id'] == id)
+
             item_exists = True
             break
 
+    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
+    session['total_price'] = total_price
     # If item does not exist, append it to the cart
     if not item_exists:
         cart_items.append(new_item)
@@ -142,8 +146,10 @@ def add_to_cart():
 @app.route('/ViewCart')
 def cart():
     cart_items = session.get('cart', [])
-    total_price = sum(float(item['Amount']) for item in cart_items)
+    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
+    print("total price for view", total_price)
     cart_count = len(session.get('cart', []))
+    session['total_price'] = total_price
     return render_template('ViewCart.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
 
 
@@ -151,12 +157,12 @@ def cart():
 # fix delete 
 @app.route('/cart/remove', methods=['POST'])
 def remove_from_cart():
-    selected_items = request.form.getlist('selected_items')
+    selected_items = request.form.get('selected_items')
     cart_items = session.get('cart', [])
-    cart_items = [item for item in cart_items if item['id'] not in selected_items]
+    cart_items = [item for item in cart_items if item['id'] != selected_items]
     session['cart'] = cart_items
+    
     return redirect(url_for('cart'))
-
 
 
 @app.route('/Edit', methods=['POST'])
@@ -183,124 +189,44 @@ def edit_item2():
         cart_count = len(session.get('cart', []))
         return render_template("profile.html", item=items, cart_count=cart_count)
 
+
 @app.route('/update_quantity', methods=['POST'])
 def update_quantity():
     item_id = request.form.get('id')
     new_quantity = int(request.form.get('quantity'))
     cart_items = session.get('cart', [])
 
-    print("Before update:", cart_items)
-
     # Find the item and update its quantity
     for item in cart_items:
         if item['id'] == item_id:
             item['quantity'] = new_quantity
+            item['total_amount'] = sum(float(item['Amount']) * item['quantity'] for item in cart_items if item['id'] == item_id)
+
             break
 
     session['cart'] = cart_items
 
     # Recalculate the total price of the updated item
     item_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items if item['id'] == item_id)
-    print("Item Price:", item_price)
 
     # Recalculate total price
     total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
     session['total_price'] = total_price
-    print("Total Price:", total_price)
+    session['item_price'] = item_price
+    print("item price", cart_items)
+    print("total price for update", total_price)
+    # Return the updated prices as JSON
+    return jsonify({'success': True, 'item_price': item_price, 'total': total_price})
 
-    print("After update:", cart_items)
-    print("Session total_price:", session['total_price'])
-
-    return redirect(url_for('cart'))
-
-@app.route('/cart/update_quantity', methods=['POST'])
-def update_cart_item_quantity():
-    product_id = request.form.get('id')
-    new_quantity = int(request.form.get('quantity'))
-    cart_items = session.get('cart', [])
-
-    print("Before update:", cart_items)
-
-    # Find the item to update
-    for item in cart_items:
-        if item['id'] == product_id:
-            item['quantity'] = new_quantity
-            break
-
-    session['cart'] = cart_items
-
-    # Calculate the total price of the updated item
-    item_price = round(next((float(item['Amount']) * item['quantity'] for item in cart_items if item['id'] == product_id), 0), 2)
-    print("Item Price:", item_price)
-
-    # Recalculate total price
-    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
-    session['total_price'] = total_price
-    print("Total Price:", total_price)
-
-    print("After update:", cart_items)
-    print("Session total_price:", session['total_price'])
-
-    return redirect(url_for('cart'))
-
-
-
-
-# @app.route('/update_quantity', methods=['POST'])
-# def update_quantity():
-#     item_id = request.form.get('id')
-#     new_quantity = int(request.form.get('quantity'))
-#     cart_items = session.get('cart', [])
-
-#     # Find the item and update its quantity
-#     for item in cart_items:
-#         if item['id'] == item_id:
-#             item['quantity'] = new_quantity
-#             break
-
-#     session['cart'] = cart_items
-
-#     # Recalculate the total price
-#     item_price = sum(float(item['Amount'] * item['quantity']) for item in cart_items if item['id'] == item_id)
-#     print("t1hhhh", item_price)
-#     # Recalculate total price
-#     total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
-#     session['total_price'] = total_price
-#     print("t1", total_price)
-
-#     return redirect(url_for('cart'))
-
-# @app.route('/cart/update_quantity', methods=['POST'])
-# def update_cart_item_quantity():
-#     product_id = request.form.get('id')
-#     new_quantity = int(request.form.get('quantity'))
-#     cart_items = session.get('cart', [])
-    
-#     # Find the item to update
-#     for item in cart_items:
-#         if item['id'] == product_id:
-#             item['quantity'] = new_quantity
-#             break
-
-#     session['cart'] = cart_items
-
-#     item_price = round(next((item['Amount'] * item['quantity'] for item in cart_items if item['id'] == product_id), 0), 2)
-#     print("t1hhhh", item_price)
-#     # Recalculate total price
-#     total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
-#     session['total_price'] = total_price
-#     print("t1", total_price)
-
-
-#     return redirect(url_for('cart'))
 
 @app.route('/checkout',  methods=['POST'])
 def checkout():
     cart_items = session.get('cart', [])
+    amount = session.get('total_amount')
+    total_price = session.get('total_price')
+    # item_price = session.get('item_price')
+    print("t2", amount)
 
-    total_price = sum(float(item['Amount']) * item['quantity'] for item in cart_items)
-    print("t2", total_price)
-    print("ytyvgyhgvjhvhgv")
 
     
     return render_template('checkout.html', cart_items=cart_items, total_price=total_price)

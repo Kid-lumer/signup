@@ -48,7 +48,7 @@
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Amount</th>
-                                <th>Total</th>
+                                <th>Sub total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,7 @@
                                 <td>{{ item.Name }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>R{{ item.Amount }}</td>
-                                <td>R{{ item.Amount * item.quantity }}</td>
+                                <td>R{{ item.total_amount }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
